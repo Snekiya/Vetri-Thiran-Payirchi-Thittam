@@ -1,0 +1,30 @@
+def generate_personalized_workout_plan(user_input: dict) -> str:
+    """
+    Generate a personalized workout plan based on the user's fitness goal
+    and preferences.
+    """
+
+    goal = user_input.get("goal", "general fitness")
+    intensity = user_input.get("intensity", "moderate")
+
+    prompt = f"""
+    Create a personalized 7-day workout plan for someone with the goal of
+    {goal}, and prefer {intensity} intensity workouts.
+
+    Each day must include:
+    - A warm-up (5-10 minutes)
+    - Main workout (targeted exercises, sets & reps)
+    - Cooldown or recovery tip
+
+    Format:
+    Day 1:
+    Warm-up: ...
+    Main Workout: ...
+    Cooldown: ...
+    """
+
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error: {e}"
